@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World Social Media</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+<body>
+    <h1>Hello World Social Media</h1>
+    <div>
+        <textarea id="postContent" rows="4" cols="50"></textarea>
+        <button onclick="createPost()">Create Post</button>
+    </div>
+    <div id="posts"></div>
+
+    <script>
+        const apiUrl = 'YOUR_API_ENDPOINT_HERE'; // Replace with your actual API endpoint
+
+        async function createPost() {
+            const content = document.getElementById('postContent').value;
+            await axios.post(apiUrl, { content });
+            document.getElementById('postContent').value = '';
+            fetchPosts();
+        }
+
+        async function fetchPosts() {
+            const response = await axios.get(apiUrl);
+            const postsDiv = document.getElementById('posts');
+            postsDiv.innerHTML = response.data.map(post => `
+                <div>
+                    <p>${post.content}</p>
+                    <small>${new Date(post.timestamp).toLocaleString()}</small>
+                </div>
+            `).join('');
+        }
+
+        fetchPosts();
+    </script>
+</body>
+</html>
