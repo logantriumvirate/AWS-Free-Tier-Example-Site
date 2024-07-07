@@ -1,7 +1,4 @@
 # AWS-Free-Tier-Example-Site
-
-# AWS Free Tier Social Media App
-
 This project demonstrates how to set up a basic social media application infrastructure using AWS Free Tier services. It includes an S3 static website, DynamoDB for data storage, Lambda for serverless computing, and CloudFront for content delivery.
 
 ## Table of Contents
